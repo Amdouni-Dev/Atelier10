@@ -1,1 +1,19 @@
-<h1>Salut</h1>>
+<a routerLinkActive="active" routerLink="/ajouterInvoice">Ajouter Invoice</a>
+<table border="1" >
+  <th>Id</th>
+  <th>discountAmount</th>
+  <th>billAmount</th>
+  <th>dateBill</th>
+  <th>status</th>
+
+  <tr *ngFor="let i of list">
+    <td>{{i.idInvoice}}</td>
+    <td>{{i.discountAmount}}</td>
+    <td>{{i.billAmount}}</td>
+    <td>{{i.dateBill}}</td>
+    <td>{{i.Status}}</td>
+    <td> <a routerLinkActive="active" [routerLink]="['/updateInvoice',i.idInvoice]" > Modifier</a></td>
+    <td> <a routerLinkActive="active" [routerLink]="['/supprimer',i.idInvoice]" > Supprimer</a></td>
+  </tr>
+</table>
+

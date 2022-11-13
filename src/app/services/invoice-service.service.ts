@@ -6,21 +6,24 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class InvoiceServiceService {
-url:string="http://localhost:3000/"
+url:string="http://localhost:3000/invoices/"
 
   constructor(private http:HttpClient) { }
 
   getInvoices():Observable<Invoice[]>{
-    return this.http.get<Invoice[]>(this.url+"invoices")
+    return this.http.get<Invoice[]>(this.url)
   }
   addInvoice(invoice:Invoice):Observable<Invoice>{
-    return this.http.post<Invoice>(this.url+"addInvoice",invoice)
+    return this.http.post<Invoice>(this.url,invoice)
   }
   updateInvoice(id:number,invoice:Invoice):Observable<Invoice>{
-    return this.http.put<Invoice>(this.url+"updateInvoice/"+id,invoice)
+    return this.http.put<Invoice>(this.url+id,invoice)
   }
-  deleteInvoice(invoice:Invoice|number):Observable<Invoice>{
-    const id=typeof invoice ==="number"?invoice:invoice.idInvoice;
-    return this.http.delete<Invoice>(this.url+"deleteInvoice/"+id)
+  deleteInvoice(id:number):Observable<Invoice>{
+
+    return this.http.delete<Invoice>(this.url+id)
+  }
+  findInvoiceById(id:number):Observable<Invoice>{
+  return this.http.get<Invoice>(this.url+id)
   }
 }

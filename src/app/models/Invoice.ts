@@ -3,5 +3,5 @@ export class Invoice {
     discountAmount!: number;
     billAmount!: number;
     dateBill !: string;
-    Status!: Boolean;
+    Status!: boolean;
     }

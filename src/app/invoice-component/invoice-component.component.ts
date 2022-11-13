@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Invoice } from '../models/Invoice';
-import { InvoiceServiceService } from '../services/invoice-service.service';
+import { Subscription } from 'rxjs';
+import {Invoice} from '../models/Invoice';
+import {InvoiceServiceService} from '../services/invoice-service.service';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-invoice-component',
@@ -8,21 +10,30 @@ import { InvoiceServiceService } from '../services/invoice-service.service';
   styleUrls: ['./invoice-component.component.css']
 })
 export class InvoiceComponentComponent implements OnInit {
+  list: any
+  idInvoice!:number
+  list1:any
 
-  constructor(private service:InvoiceServiceService) { }
+  constructor(private service:InvoiceServiceService,private ac:ActivatedRoute,private router:Router) {
+
+
+  }
 
   ngOnInit(): void {
+
+
+    this.service.getInvoices().subscribe(
+      (d)=>{
+        console.log(d);
+        this.list=d;
+      }
+    )
   }
-  getInvoicesFromService(){
-    this.service.getInvoices().subscribe()
-  }
-  addInvoice(invoice:Invoice){
-    this.service.addInvoice(invoice).subscribe();
-  }
-  updateInvoice(id:number,invoice:Invoice){
-    this.service.updateInvoice(id,invoice).subscribe();
-  }
-  deleteInvoice(invoice:any){
-    this.service.deleteInvoice(invoice).subscribe();
+
+
+  deleteInvoice(){
+    this.service.deleteInvoice(this.idInvoice).subscribe( ()=>{
+      this.router.navigate(['main'])
+    } )
   }
 }

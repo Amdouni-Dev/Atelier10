@@ -1,0 +1,13 @@
+<form #f="ngForm" >
+  <label>id</label>
+  <input type="number" name="idInvoice" value=""  ngModel>
+  <label>discountAmount</label>
+  <input type=number name="discountAmount" value="" ngModel  >
+  <label>billAmount</label>
+  <input type=number name="billAmount" value="" ngModel  >
+  <label>dateBill</label>
+  <input type=text name="dateBill" value="" ngModel  >
+  <label>status</label>
+  <input type=text name="status" value="" ngModel  >
+  <input type="submit" value="Ajouter Invoice" (click)="updateInvoice(f.value)"  >
+</form>

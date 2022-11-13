@@ -16,9 +16,5 @@
   "profile": {
     "name": "typicode"
   },
-  "invoices":{
-    "id":1,
-    "nom":"invoice1",
-    "nombreInvoice":3
-  }
+  "invoices": []
 }
